@@ -1,0 +1,8 @@
+name: VerticalFarm
+version: 1.2
+main: com.mclixiang.verticalfarm.VerticalFarm
+api-version: 1.16
+
+commands:
+  VerticalFarm:
+    usage: VerticalFarm plugin's commands
