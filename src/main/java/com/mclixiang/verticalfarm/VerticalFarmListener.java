@@ -24,8 +24,9 @@ public class VerticalFarmListener implements Listener {
             return;
         }
 
-        if (VerticalFarm.thisPlugin.mode == 1 && VerticalFarmUtils.isCrop(block)) {
-            double probability = 1.0 / VerticalFarmUtils.getVerticalCropNum(block);
+        int cropNum = VerticalFarmUtils.getVerticalCropNum(block);
+        if (VerticalFarm.thisPlugin.mode == 1 && VerticalFarmUtils.isCrop(block) && cropNum > 1) {
+            double probability = 1.0 / (VerticalFarmUtils.getVerticalCropNum(block) + 1);
             if (Math.random() > probability) {
                 event.setCancelled(true);
             }
@@ -47,8 +48,8 @@ public class VerticalFarmListener implements Listener {
                 int numCrops = VerticalFarmUtils.getVerticalCropNum(block);
                 if (numCrops > 1) {
                     String noticeMsg = VerticalFarm.thisPlugin.noticeMsg1;
-                    noticeMsg = noticeMsg.replace("{number1}", String.valueOf(numCrops - 1));
-                    noticeMsg = noticeMsg.replace("{number2}", String.valueOf(numCrops));
+                    noticeMsg = noticeMsg.replace("{number1}", String.valueOf(numCrops));
+                    noticeMsg = noticeMsg.replace("{number2}", String.valueOf(numCrops + 1));
                     event.getPlayer().sendMessage(noticeMsg);
                 }
             } else if (VerticalFarm.thisPlugin.mode == 2 && !VerticalFarmUtils.isUnderAir(block)) {
